@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="style.css" />
+        <script src="script.js" defer></script>
+        <title>Rock Paper Scissors</title>
+    </head>
+    <body>
+        <div class="match-result-overlay">You shouldn't see this 🫢</div>
+
+        <main class="game-table">
+            <div class="table-side">
+                <header class="table-side-title computer">Computer</header>
+                <ul class="table-side-menu computer">
+                    <li>
+                        <div class="table-side-button computer" data-attack-type="rock">✊</div>
+                    </li>
+                    <li>
+                        <div class="table-side-button computer" data-attack-type="paper">✋</div>
+                    </li>
+                    <li>
+                        <div class="table-side-button computer" data-attack-type="scissors">✌️</div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="game-info">
+                <span class="game-score player" data-score-value="0">0</span>
+
+                <div class="game-info-line"></div>
+
+                <input class="game-rounds-input" type="number" value="3" min="1" max="9" />
+
+                <div class="game-info-line"></div>
+
+                <span class="game-score computer" data-score-value="0">0</span>
+            </div>
+
+            <div class="table-side">
+                <menu class="table-side-menu player">
+                    <li>
+                        <button class="table-side-button player" type="button" data-attack-type="rock">✊</button>
+                    </li>
+                    <li>
+                        <button class="table-side-button player" type="button" data-attack-type="paper">✋</button>
+                    </li>
+                    <li>
+                        <button class="table-side-button player" type="button" data-attack-type="scissors">✌️</button>
+                    </li>
+                </menu>
+                <header class="table-side-title player">You</header>
+            </div>
+        </main>
+    </body>
+</html>

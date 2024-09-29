@@ -1,0 +1,225 @@
+:root {
+    --color-primary-000: #00000088;
+    --color-primary-100: #000000;
+    --color-primary-200: #111111;
+    --color-primary-300: #333333;
+    --color-secondary-100: #fafafa;
+    --color-accent-100: #b4a4d6;
+
+    --color-yellow: #ffc83d;
+    --color-red: #ed3e42;
+    --color-green: #23a55a;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+* {
+    margin: 0;
+}
+
+ul,
+menu {
+    list-style: none;
+}
+
+body {
+    min-height: 100dvh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Segoe UI', system-ui;
+    font-weight: 600;
+    color: var(--color-secondary-100);
+    background-color: var(--color-primary-100);
+}
+
+button,
+input {
+    font: inherit;
+}
+
+.player {
+    --color-game-side: var(--color-green);
+}
+
+.computer {
+    --color-game-side: var(--color-red);
+}
+
+.match-result-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    background-color: var(--color-primary-000);
+    backdrop-filter: blur(3px);
+    opacity: 0;
+    scale: 0;
+    z-index: 1000;
+    transition: all 0.2s ease;
+
+    &.active {
+        scale: 1;
+        opacity: 1;
+    }
+
+    .tie {
+        color: var(--color-yellow);
+    }
+
+    .win {
+        color: var(--color-green);
+    }
+
+    .lose {
+        color: var(--color-red);
+    }
+}
+
+.game-table {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.game-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.game-score {
+    position: relative;
+    color: var(--color-game-side);
+    transition: all 0.2s ease;
+
+    &::before {
+        content: attr(data-score-value);
+        position: absolute;
+        filter: brightness(1.8);
+        text-shadow: 0 0 0.2em var(--color-game-side);
+        scale: 0;
+        transition: all 0.2s ease;
+    }
+
+    &.active {
+        scale: 0.7;
+
+        &::before {
+            scale: 1.7;
+        }
+
+        &.player::before {
+            translate: -2.5em 0;
+        }
+
+        &.computer::before {
+            translate: 2.5em 0;
+        }
+    }
+}
+
+.game-info-line {
+    height: 0.1rem;
+    width: 100%;
+    border-radius: 0.4em;
+    background-color: var(--color-primary-300);
+}
+
+.game-rounds-input {
+    padding: 0.2em 0;
+    width: 4rem;
+    text-align: center;
+    color: var(--color-secondary-100);
+    background-color: var(--color-primary-200);
+    border-radius: 0.4em;
+    border: 0.1rem solid var(--color-primary-300);
+    transition: all 0.2s ease;
+
+    &::-webkit-inner-spin-button,
+    &::-webkit-outer-spin-button {
+        appearance: none;
+    }
+
+    &:focus-visible {
+        outline: 0.15rem dashed var(--color-accent-100);
+        outline-offset: 0.3rem;
+    }
+}
+
+.table-side {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.table-side-title {
+    text-align: center;
+    font-size: 1.2rem;
+    color: var(--color-game-side);
+}
+
+.table-side-menu {
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+
+.table-side-button {
+    width: 4rem;
+    height: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: var(--color-secondary-100);
+    background-color: var(--color-primary-200);
+    border-radius: 0.4em;
+    border: 0.1rem solid var(--color-primary-300);
+    transition: all 0.2s ease;
+
+    &.player {
+        cursor: pointer;
+
+        &:hover {
+            filter: brightness(1.2);
+            translate: 0 -0.25em;
+        }
+
+        &:focus-visible {
+            outline: 0.15rem dashed var(--color-accent-100);
+            outline-offset: 0.3rem;
+        }
+    }
+
+    &.computer {
+        cursor: default;
+        filter: grayscale(0.5) brightness(0.8);
+    }
+
+    &.active {
+        border-color: var(--color-game-side);
+        filter: brightness(1.2);
+        translate: 0 -0.25em;
+        scale: 1.2;
+        pointer-events: none;
+    }
+
+    &.inactive {
+        filter: grayscale(0.8) brightness(0.6);
+        pointer-events: none;
+    }
+
+    &.winner {
+        background-color: var(--color-game-side);
+    }
+}
